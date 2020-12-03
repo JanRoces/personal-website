@@ -1,0 +1,243 @@
+body {
+  /* background-color: #464545; */
+  background-color: #78d6ef;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: black;
+}
+
+h1 {
+  margin: 0px;
+  margin-left: 10px;
+}
+
+h3 {
+  margin: 0;
+}
+
+table {
+  text-align: center;
+}
+
+button {
+  outline: none;
+  border-color: black;
+  border-style: solid;
+  border-radius: 20px;
+  width: 200px;
+  height: 30px;
+  background-color: white;
+  font-size: 16px;
+  font-weight: bold;
+  /* justify-content: right; */
+}
+
+.main-container {
+  display: flex;
+  margin: 50px;
+  margin-bottom: 10px;
+}
+
+/*PROFILE SECTION
+/*-----------------------------------------*/
+.profile-container {
+  flex: 1;
+  /* border: 1px solid red; */
+  border: 2px solid #11667c;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: white;
+}
+
+.profile-picture-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.profile-picture {
+  /* border: 1px solid red; */
+  border: 2px solid #11667c;
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+}
+
+.profile-info div {
+  flex: 1;
+  /* border: 1px solid red; */
+  border-radius: 20px;
+}
+
+.profile-links {
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.icon-links {
+  display: flex;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.table-button-container {
+  padding: 0;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.devicon-linkedin-plain,
+.devicon-github-plain {
+  font-size: 32px;
+}
+
+.about-me {
+  /* border: 1px solid red; */
+  border-radius: 20px;
+  margin: 10px;
+}
+
+/*GLOBAL SKILLS SECTION
+/*-----------------------------------------*/
+
+.main-skills-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  border-radius: 20px;
+}
+
+.skill-heading-icon-container {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.main-skill-icon {
+  max-width: 100px;
+}
+
+.skill-icon-container {
+  flex: 1;
+  text-align: center;
+  font-size: 50px;
+}
+
+.skills-container {
+  display: flex;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 16px;
+  margin: 0;
+}
+
+/*GRAPHIC DESIGN SECTION
+/*-----------------------------------------*/
+.graphic-design-container {
+  flex: 1;
+  border: 2px solid #11667c;
+  border-radius: 20px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.art-skills-container {
+  display: flex;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.portfolio-button-container {
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/*WEB / SOFTWARE DEVELOPMENT SECTION
+/*-----------------------------------------*/
+.web-software-dev-container {
+  flex: 1;
+  border-radius: 20px;
+  background-color: white;
+  border: 2px solid #11667c;
+}
+
+.web-software-dev-container div {
+  border-radius: 20px;
+}
+
+#message {
+  text-align: center;
+}
+
+/*PROJECTS SECTION
+/*-----------------------------------------*/
+.main-projects-container {
+  margin: 10px;
+  border: 2px solid #11667c;
+  border-radius: 20px;
+  background-color: white;
+  margin: 50px;
+  margin-top: 0;
+}
+
+.main-projects-container div {
+  border-radius: 20px;
+  background-color: white;
+}
+
+#projects {
+  margin: 10px;
+  padding-top: 10px;
+}
+
+.projects-container {
+  display: flex;
+  margin: 10px;
+}
+
+.project-list {
+  flex: 1;
+  text-align: center;
+}
+
+.project-list img {
+  max-width: 300px;
+  border-radius: 20px;
+  border: 2px solid #11667c;
+}
+
+.project-description-container {
+  margin: 20px;
+}
+
+.project-description {
+  font-size: 14px;
+}
+
+.project-button-container {
+  text-align: center;
+}
+
+.project-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+/*-----------------------------------------*/

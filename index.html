@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jan Roces</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+        <link rel="shortcut icon" href="icons/title_icon.png">
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div class="profile-container">
+                <div class="profile-info">
+                    <div class="profile-picture-container">
+                        <img class="profile-picture" src="icons/avatar.png"></img>
+                    </div>
+                    <div class="profile-links">
+                        <h1>Jan Roces</h1>
+                        <table>
+                            <tr>
+                                <td><div class="table-icon-container"><span class="material-icons md-36">article</span></div></td>
+                                <td class="table-button-container"><button class="icon-button">Resume</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="table-icon-container"><i class="devicon-linkedin-plain"></i></div></td>
+                                <td class="table-button-container"><button class="icon-button">LinkedIn</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="table-icon-container"><i class="devicon-github-plain"></i></div></td>
+                                <td class="table-button-container"><button class="icon-button">Github</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="table-icon-container"><span class="material-icons md-36">email</span></div></td>
+                                <td class="table-button-container"><button class="icon-button">Message</button></td>
+                            </tr>
+                        </table>
+                    </div>                    
+                </div>
+                <div class="about-me">
+                    <h3>About Me</h3>
+                    <p>
+                        My very first exposure to programming and graphic design comes from 
+                        using HTML and photoshop to create
+                        my front page of the weblog and social networking sites: 
+                        Xanga and Myspace. Not knowing exactly what I was doing,
+                        programming became the perfect combination of my love for analytics
+                        and art.
+                    </p>
+                    <p>
+                        I am originally from Honolulu, Hawaii and moved to Las Vegas, Nevada
+                        in 2001.
+                        I attended the University of Nevada, Las Vegas and received
+                        a Bachelor of Science in Computer Science.
+                        University has taught me discipline, team work and self worth.
+                        During my academic years, I would
+                        teach myself web development and start to freelance graphic design.
+                    </p>
+                    <p>
+                        Thank you for your time.
+                    </p>
+                </div>
+            </div>
+            <div class="main-skills-container">
+                <div class="graphic-design-container">
+                    <div class="skill-heading-icon-container">
+                        <img class="main-skill-icon" src="icons/graphic_design_icon_black.png">
+                        <h3>Graphic Design</h3>
+                    </div>
+                    <div class="art-skills-container">
+                        <div class="skill-icon-container">
+                            <i class="devicon-photoshop-plain"></i>
+                            <p class="skill-name">Photoshop</p>
+                        </div>
+                        <div class="skill-icon-container">
+                            <i class="devicon-illustrator-plain"></i>
+                            <p class="skill-name">Illustrator</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-button-container">
+                        <button>Portfolio</button>
+                    </div>
+                </div>
+                <div class="web-software-dev-container">
+                    <div class="skill-heading-icon-container">
+                        <img class="main-skill-icon" src="icons/dev_icon_black.png">
+                        <h3>Web / Software Development</h3>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-icon-container">
+                            <i class="devicon-cplusplus-plain"></i>
+                            <p class="skill-name">C++</p>
+                        </div>
+                        <div class="skill-icon-container">
+                            <i class="devicon-javascript-plain"></i>
+                            <p class="skill-name">JavaScript</p>
+                        </div>
+                        <div class="skill-icon-container">
+                            <i class="devicon-react-original"></i>
+                            <p class="skill-name">ReactJS</p>
+                        </div>
+                        <div class="skill-icon-container">
+                            <i class="devicon-html5-plain"></i>
+                            <p class="skill-name">HTML</p>
+                        </div>
+                        <div class="skill-icon-container">
+                            <i class="devicon-css3-plain"></i>
+                            <p class="skill-name">CSS</p>
+                        </div>
+
+                    </div>
+                    <h3 id="message"> See below for my projects </h3>                   
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="main-projects-container">
+            <h3 id="projects">Projects</h3>
+            <div class="projects-container">
+                <div class="project-list">
+                    <img src="project_images/splitsy.png">
+                    <div class="project-label">
+                        <label><b>Splitsy</b> (JavaScript, ReactJS, HTML, CSS)</label>
+                    </div>
+                    <div class="project-description-container">
+                        <p class="project-description">
+                            Splitsy is a web application that organizes finances of a certain event.
+                            Events can be a group trip with friends and each friend pays for a specific
+                            item e.g., AirBnb or car rental. Splitsy will evenly divide expenses and 
+                            amount of debt owed to each participant.
+                        </p>
+                    </div>
+                    <div class="project-button-container">
+                        <button id="splitsy-app-button" class="project-button">App</button>
+                        <button id="splitsy-git-button" class="project-button">Git</button>
+                    </div>
+                </div>
+                <div class="project-list">
+                    <img src="project_images/mastermind.png">
+                    <div class="project-label">
+                        <label><b>Mastermind</b> (C++)</label>
+                    </div> 
+                    <div class="project-description-container">
+                        <p class="project-description">
+                            Mastermind is based on the 1972, two-player board game of the same name 
+                            where one player selects a four color combination while the other tries
+                            to guess the correct combination. For this game, the four color combination
+                            is randomly generated and you have to break the code. This game runs on
+                            the terminal.                    
+                        </p>
+                    </div>
+                    
+                    <div class="project-button-container">
+                        <button id="mastermind-git-button" class="project-button">Git</button>
+                    </div>
+                </div>
+                <div class="project-list">
+                    <img src="project_images/munchi.png">
+                    <div class="project-label">
+                        <label><b>Munchi</b> (Android Studio, Java)</label>
+                    </div>
+                    <div class="project-description-container">
+                        <p class="project-description">
+                            Munchi is an Android application that generates recipes to cook based on 
+                            ingredients found in the user's pantry. This app was made by my
+                            team at UNLV's Senior Design Competition. My role in this project was
+                            handling back-end API calls to the recipe API.
+                        </p>
+                    </div>
+                    
+                    <div class="project-button-container">
+                        <button id="munchi-app-button" class="project-button">App</button>
+                    </div> 
+                </div>
+            </div>
+
+        </div>
+        
+        <script src="main.js"></script>
+    </body>
+</html>
