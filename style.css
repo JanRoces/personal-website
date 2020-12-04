@@ -33,6 +33,19 @@ button {
   /* justify-content: right; */
 }
 
+button:hover {
+  outline: none;
+  border-color: #78d6ef;
+  border-style: solid;
+  border-radius: 20px;
+  width: 200px;
+  height: 30px;
+  background-color: #78d6ef;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
 .main-container {
   display: flex;
   margin: 50px;
@@ -244,6 +257,13 @@ button {
 }
 
 .project-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+.project-button:hover {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
