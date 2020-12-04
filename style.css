@@ -97,6 +97,7 @@ button:hover {
 .devicon-linkedin-plain,
 .devicon-github-plain {
   font-size: 32px;
+  color: black;
 }
 
 .about-me {
@@ -251,8 +252,9 @@ button:hover {
   margin-bottom: 10px;
   width: 100px;
 }
-/*-----------------------------------------*/
 
+/*RESPONSIVE FORMATTING
+/*-----------------------------------------*/
 @media (min-width: 1070px) {
   .main-container {
     display: flex;
