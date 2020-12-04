@@ -46,23 +46,8 @@ button:hover {
   color: white;
 }
 
-.main-container {
-  display: flex;
-  margin: 50px;
-  margin-bottom: 10px;
-}
-
 /*PROFILE SECTION
 /*-----------------------------------------*/
-.profile-container {
-  flex: 1;
-  /* border: 1px solid red; */
-  /* border: 2px solid #11667c; */
-  /* border-radius: 20px; */
-  margin-right: 10px;
-  background-color: white;
-}
-
 .profile-picture-container {
   display: flex;
   justify-content: center;
@@ -225,11 +210,6 @@ button:hover {
   padding: 20px;
 }
 
-.projects-container {
-  display: flex;
-  margin: 10px;
-}
-
 .project-list {
   flex: 1;
   text-align: center;
@@ -270,3 +250,34 @@ button:hover {
   width: 100px;
 }
 /*-----------------------------------------*/
+
+@media (min-width: 1070px) {
+  .main-container {
+    display: flex;
+    margin: 50px;
+    margin-bottom: 10px;
+  }
+
+  .profile-container {
+    flex: 1;
+    margin-right: 10px;
+    background-color: white;
+  }
+
+  .projects-container {
+    display: flex;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 1070px) {
+  .main-container {
+    margin: 50px;
+    margin-bottom: 10px;
+  }
+
+  .profile-container {
+    flex: 1;
+    background-color: white;
+  }
+}
