@@ -17,6 +17,7 @@ h3 {
 
 table {
   text-align: center;
+  padding-top: 20px;
 }
 
 button {
@@ -43,8 +44,8 @@ button {
 .profile-container {
   flex: 1;
   /* border: 1px solid red; */
-  border: 2px solid #11667c;
-  border-radius: 20px;
+  /* border: 2px solid #11667c; */
+  /* border-radius: 20px; */
   margin-right: 10px;
   background-color: white;
 }
@@ -57,18 +58,20 @@ button {
 
 .profile-picture {
   /* border: 1px solid red; */
-  border: 2px solid #11667c;
+  /* border: 2px solid #11667c; */
+  border: 2px solid black;
   border-radius: 50%;
 }
 
 .profile-info {
   display: flex;
+  padding: 20px;
 }
 
 .profile-info div {
   flex: 1;
   /* border: 1px solid red; */
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .profile-links {
@@ -98,8 +101,9 @@ button {
 
 .about-me {
   /* border: 1px solid red; */
-  border-radius: 20px;
+  /* border-radius: 20px; */
   margin: 10px;
+  padding: 20px;
 }
 
 /*GLOBAL SKILLS SECTION
@@ -110,7 +114,7 @@ button {
   display: flex;
   flex-direction: column;
   /* border: 1px solid red; */
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .skill-heading-icon-container {
@@ -122,6 +126,10 @@ button {
 
 .main-skill-icon {
   max-width: 100px;
+}
+
+.skills-text {
+  padding: 10px;
 }
 
 .skill-icon-container {
@@ -146,10 +154,11 @@ button {
 /*-----------------------------------------*/
 .graphic-design-container {
   flex: 1;
-  border: 2px solid #11667c;
-  border-radius: 20px;
+  /* border: 2px solid #11667c; */
+  /* border-radius: 20px; */
   background-color: white;
   margin-bottom: 10px;
+  padding: 20px;
 }
 
 .art-skills-container {
@@ -172,13 +181,10 @@ button {
 /*-----------------------------------------*/
 .web-software-dev-container {
   flex: 1;
-  border-radius: 20px;
   background-color: white;
-  border: 2px solid #11667c;
-}
-
-.web-software-dev-container div {
-  border-radius: 20px;
+  padding: 20px;
+  /* border-radius: 20px; */
+  /* border: 2px solid #11667c; */
 }
 
 #message {
@@ -189,21 +195,21 @@ button {
 /*-----------------------------------------*/
 .main-projects-container {
   margin: 10px;
-  border: 2px solid #11667c;
-  border-radius: 20px;
+  /* border: 2px solid #11667c; */
+  /* border-radius: 20px; */
   background-color: white;
   margin: 50px;
   margin-top: 0;
 }
 
 .main-projects-container div {
-  border-radius: 20px;
-  background-color: white;
+  /* border-radius: 20px; */
+  /* background-color: white; */
 }
 
 #projects {
   margin: 10px;
-  padding-top: 10px;
+  padding: 20px;
 }
 
 .projects-container {
@@ -219,11 +225,14 @@ button {
 .project-list img {
   max-width: 300px;
   border-radius: 20px;
-  border: 2px solid #11667c;
+  /* border: 2px solid #11667c; */
+  border: 2px solid black;
 }
 
 .project-description-container {
-  margin: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
 }
 
 .project-description {
