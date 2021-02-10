@@ -37,12 +37,12 @@ button {
 
 button:hover {
   outline: none;
-  border-color: #78d6ef;
+  border-color: #8ca0ea;
   border-style: solid;
   border-radius: 20px;
   width: 200px;
   height: 30px;
-  background-color: #78d6ef;
+  background-color: #8ca0ea;
   font-size: 16px;
   font-weight: bold;
   color: white;
