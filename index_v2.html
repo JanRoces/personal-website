@@ -6,6 +6,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
         <link rel="shortcut icon" href="icons/title_icon.png">
+        <script
+          src="https://kit.fontawesome.com/5e94ba9257.js"
+          crossorigin="anonymous"
+        ></script>
     </head>
 
     <body>
@@ -15,9 +19,31 @@
                     <img class="profile-picture" src="icons/avatar3.png"></img>
                 </div>
                 <div class="container-typing">
-                    <div class="typing"><span id="typed-text"></span><span class="caret"></span></div>
+                  <div class="typing"><span id="typed-text"></span><span class="caret"></span></div>
                 </div>
             </div>
+                <div class="container-social-links stagger-prep">
+                  <div class="container-social-link color-yellow" style="--i: 0"
+                    onclick="window.open('https://drive.google.com/file/d/1oP6PgyIBOIWamON3jXP9siantfQ0ty9E/view?usp=sharing')"
+                    >
+                    <i class="fa-solid fa-paperclip"></i>
+                  </div>
+                  <div class="container-social-link color-blue" style="--i: 1"
+                    onclick="window.open('https://www.linkedin.com/in/jan-roces-38ba011b3/')"
+                    >
+                    <i class="fa-brands fa-linkedin"></i>
+                  </div>
+                  <div class="container-social-link color-pink" style="--i: 2"
+                    onclick="window.open('https://github.com/JanRoces')"
+                    >
+                    <i class="fa-brands fa-github"></i>
+                  </div>
+                  <div class="container-social-link color-green" style="--i: 3"
+                    onclick="window.open('mailto:rocesjg@gmail.com')"
+                    >
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                </div>
         </div>
 
     <script>
@@ -69,6 +95,7 @@
           charIndex += 1;
 
           var nextDelay = defaultDelayMs;
+
           if (target.textContent.endsWith('hello!') || nextChar === '\n') {
             nextDelay = extendedDelayMs;
           }
@@ -83,10 +110,16 @@
         }
 
         var containerProfile = document.querySelector('.container-profile');
+        var socialLinks = document.querySelector('.container-social-links');
         var started = false;
+
         function startTypingOnce() {
           if (started) return;
           started = true;
+          if (socialLinks) {
+            socialLinks.classList.remove('stagger-prep');
+            socialLinks.classList.add('stagger-in');
+          }
           typeNextCharacter();
         }
 

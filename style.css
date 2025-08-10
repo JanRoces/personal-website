@@ -16,12 +16,6 @@ body {
 }
 
 .main-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.main-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -34,20 +28,6 @@ body {
   display: flex;
   gap: 20px;
   justify-content: center;
-}
-
-/* Fade-in up on load */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(100px);
-  animation: fadeInUp 800ms ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .container-profile-picture- {
@@ -64,115 +44,73 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
-/*GLOBAL SKILLS SECTION
-/*-----------------------------------------*/
+.typed-text {
+  font-size: 18px;
+}
 
-.main-skills-container {
-  flex: 1;
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: fadeInUp 800ms ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container-social-links {
   display: flex;
-  flex-direction: column;
+  cursor: pointer;
+  gap: 20px;
+  justify-content: center;
+  --stagger-step: 120ms;
 }
 
-.skill-heading-icon-container {
-  text-align: center;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+.stagger-prep .container-social-link {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
-.main-skill-icon {
-  max-width: 100px;
+.stagger-in .container-social-link {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease-out, transform 420ms ease-out;
+  transition-delay: calc(var(--i, 0) * var(--stagger-step, 120ms));
 }
 
-.skills-text {
-  padding: 10px;
+.container-social-link {
+  font-size: 25px;
+  transition: all 0.3s ease;
 }
 
-.skill-icon-container {
-  flex: 1;
-  text-align: center;
-  font-size: 50px;
+.container-social-link:hover {
+  color: #FFFFFF;
 }
 
-.skills-container {
-  display: flex;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+
+.color-yellow {
+  color: #EECB52;
 }
 
-.skill-name {
-  font-size: 16px;
-  margin: 0;
+.color-pink {
+  color: #E542A9;
 }
 
-/*WEB / SOFTWARE DEVELOPMENT SECTION
-/*-----------------------------------------*/
-.web-software-dev-container {
-  flex: 1;
-  background-color: white;
-  padding: 20px;
+.color-blue {
+  color: #76C5DD;
 }
 
-#message {
-  text-align: center;
+.color-green {
+  color: #7FE18D;
 }
 
-/*PROJECTS SECTION
-/*-----------------------------------------*/
-.main-projects-container {
-  background-color: white;
-  margin: 50px;
-  margin-top: 0;
-  padding-bottom: 10px;
+.color-red {
+  color: #FF5050;
 }
 
-#projects {
-  margin: 10px;
-  padding: 20px;
-}
-
-.project-list {
-  flex: 1;
-  text-align: center;
-}
-
-.project-list img {
-  max-width: 275px;
-  border-radius: 20px;
-  /* border: 2px solid #11667c; */
-  border: 2px solid black;
-}
-
-.project-description-container {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.project-description {
-  font-size: 14px;
-}
-
-.project-button-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.project-button {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: 100px;
-}
-
-.project-button:hover {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: 100px;
-}
-
-/* Typing effect */
 .typing {
   display: inline-block;
   overflow: hidden;
