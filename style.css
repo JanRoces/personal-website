@@ -10,9 +10,8 @@
 
 body {
   background-color: #1D1528;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
   color: #FFFFFF;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .main-container {
@@ -38,10 +37,6 @@ body {
 .profile-picture {
   border-radius: 50%;
   width: 200px;
-}
-
-.container-typing {
-  font-family: "Courier New", Courier, monospace;
 }
 
 .typed-text {
@@ -90,6 +85,68 @@ body {
   color: #FFFFFF;
 }
 
+.container-about-me {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 500px;
+}
+
+.container-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.link-text {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.link-text.active {
+  color: #E542A9;
+}
+
+.link-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #E542A9;
+  border-radius: 2px;
+  transform: translateX(0);
+  opacity: 0;
+  transition: transform 500ms ease-in-out, width 500ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.container-links.indicator-visible .link-indicator {
+  opacity: 1;
+}
+
+.container-links.links-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms ease-in-out, transform 700ms ease-in-out;
+}
+
+.container-about-me-content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: max-height 1100ms ease-in-out, opacity 800ms ease-in-out, transform 800ms ease-in-out;
+}
+
+.container-about-me-content.is-open {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .color-yellow {
   color: #EECB52;

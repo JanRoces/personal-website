@@ -18,123 +18,56 @@
                 <div class="container-profile-picture-">
                     <img class="profile-picture" src="icons/avatar3.png"></img>
                 </div>
-                <div class="container-typing">
+                <div>
                   <div class="typing"><span id="typed-text"></span><span class="caret"></span></div>
                 </div>
             </div>
-                <div class="container-social-links stagger-prep">
-                  <div class="container-social-link color-yellow" style="--i: 0"
-                    onclick="window.open('https://drive.google.com/file/d/1oP6PgyIBOIWamON3jXP9siantfQ0ty9E/view?usp=sharing')"
-                    >
-                    <i class="fa-solid fa-paperclip"></i>
-                  </div>
-                  <div class="container-social-link color-blue" style="--i: 1"
-                    onclick="window.open('https://www.linkedin.com/in/jan-roces-38ba011b3/')"
-                    >
-                    <i class="fa-brands fa-linkedin"></i>
-                  </div>
-                  <div class="container-social-link color-pink" style="--i: 2"
-                    onclick="window.open('https://github.com/JanRoces')"
-                    >
-                    <i class="fa-brands fa-github"></i>
-                  </div>
-                  <div class="container-social-link color-green" style="--i: 3"
-                    onclick="window.open('mailto:rocesjg@gmail.com')"
-                    >
-                    <i class="fa-solid fa-envelope"></i>
-                  </div>
-                </div>
+            <div class="container-social-links stagger-prep">
+              <div class="container-social-link color-yellow" style="--i: 0"
+                onclick="window.open('https://drive.google.com/file/d/1oP6PgyIBOIWamON3jXP9siantfQ0ty9E/view?usp=sharing')"
+                >
+                <i class="fa-solid fa-paperclip"></i>
+              </div>
+              <div class="container-social-link color-blue" style="--i: 1"
+                onclick="window.open('https://www.linkedin.com/in/jan-roces-38ba011b3/')"
+                >
+                <i class="fa-brands fa-linkedin"></i>
+              </div>
+              <div class="container-social-link color-pink" style="--i: 2"
+                onclick="window.open('https://github.com/JanRoces')"
+                >
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div class="container-social-link color-green" style="--i: 3"
+                onclick="window.open('mailto:rocesjg@gmail.com')"
+                >
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+            </div>
+            <div class="container-about-me">
+              <div class="container-links">
+                <div class="link-text" id="link-about">about me</div>
+                <div class="link-text" id="link-projects">projects</div>
+                <div class="link-indicator" id="link-indicator"></div>
+              </div>
+              <div class="container-about-me-content" id="about-content">
+                <p>
+                  My journey into <span class="color-yellow">programming</span> began with customizing the front pages of my Xanga and MySpace profiles using <span class="color-yellow">HTML</span>.
+                  It was the perfect blend of problem-solving and artistic expression, and I was hooked from the start.
+                </p>
+                <p>
+                  Originally from Honolulu, Hawaii, I relocated to Las Vegas, Nevada in 2001.
+                  I went on to earn my <span class="color-blue">Bachelor of Science in Computer Science</span> from the <span class="color-red">University of Nevada, Las Vegas</span>.
+                  Throughout my studies, I taught myself web development and explored graphic design, combining technical skills with visual creativity.
+                </p>
+                <p>
+                  Today, I work as a <span class="color-green">Software Engineer</span>, where I've led my team through numerous projects and feature launches,
+                  bringing both <span class="color-green">leadership</span> and hands-on <span class="color-green">technical expertise</span> to the table.
+              </div>
+            </div>
         </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var target = document.getElementById('typed-text');
-        var defaultDelayMs = 90;
-        var extendedDelayMs = 1000;
-
-        var segments = [
-          { text: 'hello!', bold: true, color: '#EECB52' },
-          { text: ' My name is ', bold: false, color: '#FFFFFF' },
-          { text: 'Jan Roces', bold: true, color: '#76C5DD' },
-          { text: '\nI am a ', bold: false, color: '#FFFFFF' },
-          { text: 'Software Engineer', bold: true, color: '#FF5050' },
-          { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' }
-        ];
-
-        var segmentIndex = 0;
-        var charIndex = 0;
-        var currentNode = null;
-
-        function getOrCreateCurrentNode() {
-          if (currentNode) return currentNode;
-          var seg = segments[segmentIndex];
-          if (seg.bold) {
-            currentNode = document.createElement('strong');
-            currentNode.style.color = seg.color;
-            target.appendChild(currentNode);
-          } else {
-            currentNode = document.createTextNode('');
-            target.appendChild(currentNode);
-          }
-          return currentNode;
-        }
-
-        function typeNextCharacter() {
-          if (segmentIndex >= segments.length) return;
-
-          var seg = segments[segmentIndex];
-          var node = getOrCreateCurrentNode();
-          var nextChar = seg.text.charAt(charIndex);
-
-          if (seg.bold) {
-            node.textContent += nextChar;
-          } else {
-            node.nodeValue += nextChar;
-          }
-
-          charIndex += 1;
-
-          var nextDelay = defaultDelayMs;
-
-          if (target.textContent.endsWith('hello!') || nextChar === '\n') {
-            nextDelay = extendedDelayMs;
-          }
-
-          if (charIndex >= seg.text.length) {
-            segmentIndex += 1;
-            charIndex = 0;
-            currentNode = null;
-          }
-
-          setTimeout(typeNextCharacter, nextDelay);
-        }
-
-        var containerProfile = document.querySelector('.container-profile');
-        var socialLinks = document.querySelector('.container-social-links');
-        var started = false;
-
-        function startTypingOnce() {
-          if (started) return;
-          started = true;
-          if (socialLinks) {
-            socialLinks.classList.remove('stagger-prep');
-            socialLinks.classList.add('stagger-in');
-          }
-          typeNextCharacter();
-        }
-
-        if (containerProfile) {
-          var computed = window.getComputedStyle(containerProfile);
-          if (computed.animationName && computed.animationName !== 'none') {
-            containerProfile.addEventListener('animationend', startTypingOnce, { once: true });
-          } else {
-            startTypingOnce();
-          }
-        } else {
-          startTypingOnce();
-        }
-      });
-    </script>
+    <script src="index.js"></script>
 
     </body>
 </html>
