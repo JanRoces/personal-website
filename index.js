@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var containerProfile = document.querySelector('.container-profile');
   var socialLinks = document.querySelector('.container-social-links');
-  var containerLinks = document.querySelector('.container-links');
   var linkAbout = document.getElementById('link-about');
   var linkProjects = document.getElementById('link-projects');
   var aboutContent = document.getElementById('about-content');
+  var projectsContent = document.getElementById('projects-content');
   var containerLinks = document.querySelector('.container-links');
   var linkIndicator = document.getElementById('link-indicator');
   var started = false;
@@ -121,17 +121,62 @@ document.addEventListener('DOMContentLoaded', function () {
     linkProjects.classList.toggle('active', element === linkProjects);
   }
 
-  if (linkAbout && aboutContent) {
+  function setActiveLink(element) {
+    linkAbout.classList.toggle('active', element === linkAbout);
+    linkProjects.classList.toggle('active', element === linkProjects);
+  }
+
+  var isTransitioningSection = false;
+
+  function openSection(targetContent, targetLink) {
+    if (!targetContent) return;
+    if (isTransitioningSection) return;
+
+    var openEl = null;
+    if (aboutContent && aboutContent.classList.contains('is-open'))
+      openEl = aboutContent;
+    if (projectsContent && projectsContent.classList.contains('is-open'))
+      openEl = projectsContent;
+
+    // Already showing target
+    if (openEl === targetContent) {
+      moveIndicatorTo(targetLink);
+      setActiveLink(targetLink);
+      return;
+    }
+
+    // Move indicator immediately for responsiveness
+    moveIndicatorTo(targetLink);
+
+    // If nothing open, just open target
+    if (!openEl) {
+      targetContent.classList.add('is-open');
+      setActiveLink(targetLink);
+      return;
+    }
+
+    // Close current, then open target on transition end
+    isTransitioningSection = true;
+    var onEnd = function (e) {
+      if (e.propertyName !== 'max-height') return;
+      openEl.removeEventListener('transitionend', onEnd);
+      isTransitioningSection = false;
+      targetContent.classList.add('is-open');
+      setActiveLink(targetLink);
+    };
+    openEl.addEventListener('transitionend', onEnd);
+    openEl.classList.remove('is-open');
+  }
+
+  if (linkAbout) {
     linkAbout.addEventListener('click', function () {
-      aboutContent.classList.add('is-open');
-      moveIndicatorTo(linkAbout);
+      openSection(aboutContent, linkAbout);
     });
   }
 
-  if (linkProjects && aboutContent) {
+  if (linkProjects) {
     linkProjects.addEventListener('click', function () {
-      aboutContent.classList.remove('is-open');
-      moveIndicatorTo(linkProjects);
+      openSection(projectsContent, linkProjects);
     });
   }
 

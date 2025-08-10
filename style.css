@@ -89,7 +89,8 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  width: 500px;
+  width: 100%;
+  align-items: center;
 }
 
 .container-links {
@@ -140,12 +141,63 @@ body {
   opacity: 0;
   transform: translateY(6px);
   transition: max-height 1100ms ease-in-out, opacity 800ms ease-in-out, transform 800ms ease-in-out;
+  width: 500px;
 }
 
 .container-about-me-content.is-open {
   max-height: 1000px;
   opacity: 1;
   transform: translateY(0);
+}
+
+.container-projects-content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: max-height 1100ms ease-in-out, opacity 800ms ease-in-out, transform 800ms ease-in-out;
+  width: 500px;
+}
+
+.container-projects-content.is-open {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.card-image {
+  border-radius: 20px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.card-label {
+  font-weight: bold;
+}
+
+.container-technologies {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.container-technology {
+  font-size: 25px;
 }
 
 .color-yellow {
@@ -166,6 +218,11 @@ body {
 
 .color-red {
   color: #FF5050;
+}
+
+.icon-plus {
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .typing {
