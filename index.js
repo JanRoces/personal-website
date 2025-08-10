@@ -1,41 +1,109 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var target = document.getElementById('typed-text');
-  var defaultDelayMs = 90;
-  var extendedDelayMs = 1000;
+document.addEventListener('DOMContentLoaded', function init() {
+  const TYPE_DEFAULT_DELAY_MS = 90;
+  const TYPE_EXTENDED_DELAY_MS = 1000;
+  const SOCIAL_LAST_ICON_TRANSITION_PROP = 'opacity';
 
-  var segments = [
-    { text: 'hello!', bold: true, color: '#EECB52' },
-    { text: ' My name is ', bold: false, color: '#FFFFFF' },
-    { text: 'Jan Roces', bold: true, color: '#76C5DD' },
-    { text: '\nI am a ', bold: false, color: '#FFFFFF' },
-    { text: 'Software Engineer', bold: true, color: '#FF5050' },
-    { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' },
-  ];
+  var elements = {
+    containerProfile: document.querySelector('.container-profile'),
+    socialLinks: document.querySelector('.container-social-links'),
+    containerLinks: document.querySelector('.container-links'),
+    linkAbout: document.getElementById('link-about'),
+    linkProjects: document.getElementById('link-projects'),
+    aboutContent: document.getElementById('about-content'),
+    projectsContent: document.getElementById('projects-content'),
+    linkIndicator: document.getElementById('link-indicator'),
+    typedTarget: document.getElementById('typed-text'),
+  };
 
-  var segmentIndex = 0;
-  var charIndex = 0;
-  var currentNode = null;
+  function onTransitionEndOnce(element, propertyName, handler) {
+    if (!element) {
+      return;
+    }
+
+    const wrapped = function (evt) {
+      if (evt.propertyName !== propertyName) {
+        return;
+      }
+
+      element.removeEventListener('transitionend', wrapped);
+      handler(evt);
+    };
+
+    element.addEventListener('transitionend', wrapped);
+  }
+
+  function setActiveLink(element) {
+    if (!elements.linkAbout || !elements.linkProjects) {
+      return;
+    }
+
+    elements.linkAbout.classList.toggle(
+      'active',
+      element === elements.linkAbout,
+    );
+
+    elements.linkProjects.classList.toggle(
+      'active',
+      element === elements.linkProjects,
+    );
+  }
+
+  function moveIndicatorTo(element) {
+    if (!element || !elements.linkIndicator || !elements.containerLinks) {
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const parentRect = elements.containerLinks.getBoundingClientRect();
+    const left = rect.left - parentRect.left;
+
+    elements.linkIndicator.style.width = rect.width + 'px';
+    elements.linkIndicator.style.transform = 'translateX(' + left + 'px)';
+    elements.containerLinks.classList.add('indicator-visible');
+
+    setActiveLink(element);
+  }
+
+  const typewriterState = {
+    segments: [
+      { text: 'hello!', bold: true, color: '#EECB52' },
+      { text: ' My name is ', bold: false, color: '#FFFFFF' },
+      { text: 'Jan Roces', bold: true, color: '#76C5DD' },
+      { text: '\nI am a ', bold: false, color: '#FFFFFF' },
+      { text: 'Software Engineer', bold: true, color: '#FF5050' },
+      { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' },
+    ],
+    segmentIndex: 0,
+    charIndex: 0,
+    currentNode: null,
+  };
 
   function getOrCreateCurrentNode() {
-    if (currentNode) return currentNode;
-    var seg = segments[segmentIndex];
-    if (seg.bold) {
-      currentNode = document.createElement('strong');
-      currentNode.style.color = seg.color;
-      target.appendChild(currentNode);
-    } else {
-      currentNode = document.createTextNode('');
-      target.appendChild(currentNode);
+    if (typewriterState.currentNode) {
+      return typewriterState.currentNode;
     }
-    return currentNode;
+
+    const seg = typewriterState.segments[typewriterState.segmentIndex];
+    if (seg.bold) {
+      typewriterState.currentNode = document.createElement('strong');
+      typewriterState.currentNode.style.color = seg.color;
+      elements.typedTarget.appendChild(typewriterState.currentNode);
+    } else {
+      typewriterState.currentNode = document.createTextNode('');
+      elements.typedTarget.appendChild(typewriterState.currentNode);
+    }
+
+    return typewriterState.currentNode;
   }
 
   function typeNextCharacter() {
-    if (segmentIndex >= segments.length) return;
+    if (typewriterState.segmentIndex >= typewriterState.segments.length) {
+      return;
+    }
 
-    var seg = segments[segmentIndex];
-    var node = getOrCreateCurrentNode();
-    var nextChar = seg.text.charAt(charIndex);
+    const seg = typewriterState.segments[typewriterState.segmentIndex];
+    const node = getOrCreateCurrentNode();
+    const nextChar = seg.text.charAt(typewriterState.charIndex);
 
     if (seg.bold) {
       node.textContent += nextChar;
@@ -43,149 +111,146 @@ document.addEventListener('DOMContentLoaded', function () {
       node.nodeValue += nextChar;
     }
 
-    charIndex += 1;
+    typewriterState.charIndex += 1;
+    let nextDelay = TYPE_DEFAULT_DELAY_MS;
 
-    var nextDelay = defaultDelayMs;
-
-    if (target.textContent.endsWith('hello!') || nextChar === '\n') {
-      nextDelay = extendedDelayMs;
+    if (
+      elements.typedTarget.textContent.endsWith('hello!') ||
+      nextChar === '\n'
+    ) {
+      nextDelay = TYPE_EXTENDED_DELAY_MS;
     }
 
-    if (charIndex >= seg.text.length) {
-      segmentIndex += 1;
-      charIndex = 0;
-      currentNode = null;
+    if (typewriterState.charIndex >= seg.text.length) {
+      typewriterState.segmentIndex += 1;
+      typewriterState.charIndex = 0;
+      typewriterState.currentNode = null;
     }
 
     setTimeout(typeNextCharacter, nextDelay);
   }
 
-  var containerProfile = document.querySelector('.container-profile');
-  var socialLinks = document.querySelector('.container-social-links');
-  var linkAbout = document.getElementById('link-about');
-  var linkProjects = document.getElementById('link-projects');
-  var aboutContent = document.getElementById('about-content');
-  var projectsContent = document.getElementById('projects-content');
-  var containerLinks = document.querySelector('.container-links');
-  var linkIndicator = document.getElementById('link-indicator');
-  var started = false;
-
-  function startTypingOnce() {
-    if (started) return;
-    started = true;
-    if (socialLinks) {
-      socialLinks.classList.remove('stagger-prep');
-      socialLinks.classList.add('stagger-in');
-
-      if (containerLinks) {
-        var lastIcon = socialLinks.querySelector(
-          '.container-social-link:last-child',
-        );
-        if (lastIcon) {
-          var onEnd = function (e) {
-            if (e.propertyName !== 'opacity') return;
-            lastIcon.removeEventListener('transitionend', onEnd);
-            containerLinks.classList.add('links-in');
-          };
-          lastIcon.addEventListener('transitionend', onEnd);
-        } else {
-          containerLinks.classList.add('links-in');
-        }
-      }
+  function revealSocialsThenLinks() {
+    if (!elements.socialLinks || !elements.containerLinks) {
+      return;
     }
-    typeNextCharacter();
-  }
 
-  if (containerProfile) {
-    var computed = window.getComputedStyle(containerProfile);
-    if (computed.animationName && computed.animationName !== 'none') {
-      containerProfile.addEventListener('animationend', startTypingOnce, {
-        once: true,
-      });
-    } else {
-      startTypingOnce();
+    elements.socialLinks.classList.remove('stagger-prep');
+    elements.socialLinks.classList.add('stagger-in');
+
+    const lastIcon = elements.socialLinks.querySelector(
+      '.container-social-link:last-child',
+    );
+    if (!lastIcon) {
+      elements.containerLinks.classList.add('links-in');
+      return;
     }
-  } else {
-    startTypingOnce();
+
+    onTransitionEndOnce(
+      lastIcon,
+      SOCIAL_LAST_ICON_TRANSITION_PROP,
+      function () {
+        elements.containerLinks.classList.add('links-in');
+      },
+    );
   }
 
-  function moveIndicatorTo(element) {
-    if (!element || !linkIndicator || !containerLinks) return;
-    var rect = element.getBoundingClientRect();
-    var parentRect = containerLinks.getBoundingClientRect();
-    var left = rect.left - parentRect.left;
-    linkIndicator.style.width = rect.width + 'px';
-    linkIndicator.style.transform = 'translateX(' + left + 'px)';
-    containerLinks.classList.add('indicator-visible');
-    linkAbout.classList.toggle('active', element === linkAbout);
-    linkProjects.classList.toggle('active', element === linkProjects);
-  }
+  let isTransitioningSection = false;
 
-  function setActiveLink(element) {
-    linkAbout.classList.toggle('active', element === linkAbout);
-    linkProjects.classList.toggle('active', element === linkProjects);
-  }
+  function whichSectionIsOpen() {
+    if (
+      elements.aboutContent &&
+      elements.aboutContent.classList.contains('is-open')
+    )
+      return elements.aboutContent;
+    if (
+      elements.projectsContent &&
+      elements.projectsContent.classList.contains('is-open')
+    ) {
+      return elements.projectsContent;
+    }
 
-  var isTransitioningSection = false;
+    return null;
+  }
 
   function openSection(targetContent, targetLink) {
-    if (!targetContent) return;
-    if (isTransitioningSection) return;
+    if (!targetContent || isTransitioningSection) {
+      return;
+    }
 
-    var openEl = null;
-    if (aboutContent && aboutContent.classList.contains('is-open'))
-      openEl = aboutContent;
-    if (projectsContent && projectsContent.classList.contains('is-open'))
-      openEl = projectsContent;
+    const currentlyOpen = whichSectionIsOpen();
 
-    // Already showing target
-    if (openEl === targetContent) {
+    if (currentlyOpen === targetContent) {
       moveIndicatorTo(targetLink);
       setActiveLink(targetLink);
       return;
     }
 
-    // Move indicator immediately for responsiveness
     moveIndicatorTo(targetLink);
 
-    // If nothing open, just open target
-    if (!openEl) {
+    if (!currentlyOpen) {
       targetContent.classList.add('is-open');
       setActiveLink(targetLink);
       return;
     }
 
-    // Close current, then open target on transition end
     isTransitioningSection = true;
-    var onEnd = function (e) {
-      if (e.propertyName !== 'max-height') return;
-      openEl.removeEventListener('transitionend', onEnd);
+
+    onTransitionEndOnce(currentlyOpen, 'max-height', function () {
       isTransitioningSection = false;
       targetContent.classList.add('is-open');
       setActiveLink(targetLink);
-    };
-    openEl.addEventListener('transitionend', onEnd);
-    openEl.classList.remove('is-open');
+    });
+    currentlyOpen.classList.remove('is-open');
   }
 
-  if (linkAbout) {
-    linkAbout.addEventListener('click', function () {
-      openSection(aboutContent, linkAbout);
+  if (elements.linkAbout) {
+    elements.linkAbout.addEventListener('click', function () {
+      openSection(elements.aboutContent, elements.linkAbout);
     });
   }
 
-  if (linkProjects) {
-    linkProjects.addEventListener('click', function () {
-      openSection(projectsContent, linkProjects);
+  if (elements.linkProjects) {
+    elements.linkProjects.addEventListener('click', function () {
+      openSection(elements.projectsContent, elements.linkProjects);
     });
   }
 
   window.addEventListener('resize', function () {
-    var active = linkAbout.classList.contains('active')
-      ? linkAbout
-      : linkProjects.classList.contains('active')
-        ? linkProjects
-        : null;
-    if (active) moveIndicatorTo(active);
+    var active =
+      elements.linkAbout && elements.linkAbout.classList.contains('active')
+        ? elements.linkAbout
+        : elements.linkProjects &&
+            elements.linkProjects.classList.contains('active')
+          ? elements.linkProjects
+          : null;
+
+    if (active) {
+      moveIndicatorTo(active);
+    }
   });
+
+  let started = false;
+  function startOnce() {
+    if (started) {
+      return;
+    }
+
+    started = true;
+    revealSocialsThenLinks();
+    typeNextCharacter();
+  }
+
+  if (elements.containerProfile) {
+    var computed = window.getComputedStyle(elements.containerProfile);
+    if (computed.animationName && computed.animationName !== 'none') {
+      elements.containerProfile.addEventListener('animationend', startOnce, {
+        once: true,
+      });
+    } else {
+      startOnce();
+    }
+  } else {
+    startOnce();
+  }
 });
