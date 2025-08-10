@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function init() {
   const TYPE_DEFAULT_DELAY_MS = 90;
-  const TYPE_EXTENDED_DELAY_MS = 1000;
+  const TYPE_EXTENDED_DELAY_MS = 1500;
   const SOCIAL_LAST_ICON_TRANSITION_PROP = 'opacity';
 
   var elements = {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function init() {
       { text: 'Jan Roces', bold: true, color: '#76C5DD' },
       { text: '\nI am a ', bold: false, color: '#FFFFFF' },
       { text: 'Software Engineer', bold: true, color: '#FF5050' },
-      { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' },
+      { text: '.\nWelcome to my website!\n', bold: false, color: '#FFFFFF' },
     ],
     segmentIndex: 0,
     charIndex: 0,
@@ -96,8 +96,20 @@ document.addEventListener('DOMContentLoaded', function init() {
     return typewriterState.currentNode;
   }
 
+  function restartTypewriter() {
+    if (!elements.typedTarget) {
+      return;
+    }
+    elements.typedTarget.textContent = '';
+    typewriterState.segmentIndex = 0;
+    typewriterState.charIndex = 0;
+    typewriterState.currentNode = null;
+    setTimeout(typeNextCharacter, TYPE_EXTENDED_DELAY_MS);
+  }
+
   function typeNextCharacter() {
     if (typewriterState.segmentIndex >= typewriterState.segments.length) {
+      restartTypewriter();
       return;
     }
 
