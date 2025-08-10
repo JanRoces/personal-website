@@ -1,111 +1,67 @@
+/* COLOR SCHEME */
+/*
+#1D1528 purple
+#EECB52 yellow
+#E542A9 pink
+#76C5DD blue
+#7FE18D green
+#FF5050 red
+*/
+
 body {
-  /* background-color: #464545; */
-  background-color: lightgray;
+  background-color: #1D1528;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: black;
+  color: #FFFFFF;
 }
 
-h1 {
-  margin: 0px;
-  margin-left: 10px;
+.main-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
-h3 {
-  margin: 0;
-  text-align: center;
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-table {
-  text-align: center;
-  padding-top: 20px;
+.container-profile {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
-button {
-  outline: none;
-  border-color: #566573;
-  border-style: solid;
-  border-radius: 20px;
-  width: 200px;
-  height: 30px;
-  background-color: #566573;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
+/* Fade-in up on load */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: fadeInUp 800ms ease-out forwards;
 }
 
-.parent {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-button:hover {
-  outline: none;
-  border-color: #8ca0ea;
-  border-style: solid;
-  border-radius: 20px;
-  width: 200px;
-  height: 30px;
-  background-color: #8ca0ea;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-}
-
-/*PROFILE SECTION
-/*-----------------------------------------*/
-.profile-picture-container {
+.container-profile-picture- {
   display: flex;
   justify-content: center;
-  margin: 10px;
 }
 
 .profile-picture {
-  /* border: 1px solid red; */
-  /* border: 2px solid #11667c; */
-  border: 2px solid black;
   border-radius: 50%;
+  width: 200px;
 }
 
-.profile-info {
-  display: flex;
-  padding: 20px;
-}
-
-.profile-info div {
-  flex: 1;
-  /* border: 1px solid red; */
-  /* border-radius: 20px; */
-}
-
-.profile-links {
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.icon-links {
-  display: flex;
-  font-size: 30px;
-  margin-top: 10px;
-}
-
-.table-button-container {
-  padding: 0;
-}
-
-.material-icons.md-36 {
-  font-size: 36px;
-}
-
-.devicon-linkedin-plain,
-.devicon-github-plain {
-  font-size: 32px;
-  color: black;
-}
-
-.about-me {
-  margin: 10px;
-  padding: 20px;
+.container-typing {
+  font-family: "Courier New", Courier, monospace;
 }
 
 /*GLOBAL SKILLS SECTION
@@ -148,31 +104,6 @@ button:hover {
 .skill-name {
   font-size: 16px;
   margin: 0;
-}
-
-/*GRAPHIC DESIGN SECTION
-/*-----------------------------------------*/
-.graphic-design-container {
-  flex: 1;
-  background-color: white;
-  margin-top: 15px;
-  padding: 20px;
-}
-
-.art-skills-container {
-  display: flex;
-  padding-left: 100px;
-  padding-right: 100px;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-}
-
-.portfolio-button-container {
-  text-align: center;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
 }
 
 /*WEB / SOFTWARE DEVELOPMENT SECTION
@@ -241,37 +172,25 @@ button:hover {
   width: 100px;
 }
 
-/*RESPONSIVE FORMATTING
-/*-----------------------------------------*/
-@media (min-width: 1070px) {
-  .main-container {
-    display: flex;
-    margin: 50px;
-    margin-bottom: 15px;
-  }
-
-  .profile-container {
-    flex: 1;
-    margin-right: 15px;
-    background-color: white;
-  }
-
-  .projects-container {
-    display: flex;
-    margin: 10px;
-    padding: 20px;
-  }
+/* Typing effect */
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre-line;
+  width: 300px;
 }
 
-@media (max-width: 1070px) {
-  .main-container {
-    margin: 50px;
-    margin-bottom: 15px;
-  }
+.caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: #FFFFFF;
+  margin-left: 2px;
+  transform: translateY(0.15em);
+  animation: blink 1s step-end infinite;
+}
 
-  .profile-container {
-    flex: 1;
-    background-color: white;
-    margin-bottom: 15px;
-  }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }

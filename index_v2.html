@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jan Roces</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+        <link rel="shortcut icon" href="icons/title_icon.png">
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div class="container-profile fade-in-up">
+                <div class="container-profile-picture-">
+                    <img class="profile-picture" src="icons/avatar.png"></img>
+                </div>
+                <div class="container-typing">
+                    <div class="typing"><span id="typed-text"></span><span class="caret"></span></div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var target = document.getElementById('typed-text');
+        var defaultDelayMs = 90;
+        var extendedDelayMs = 1000;
+
+        var segments = [
+          { text: 'hello!', bold: true, color: '#EECB52' },
+          { text: ' My name is ', bold: false, color: '#FFFFFF' },
+          { text: 'Jan Roces', bold: true, color: '#76C5DD' },
+          { text: '\nI am a ', bold: false, color: '#FFFFFF' },
+          { text: 'Software Engineer', bold: true, color: '#FF5050' },
+          { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' }
+        ];
+
+        var segmentIndex = 0;
+        var charIndex = 0;
+        var currentNode = null;
+
+        function getOrCreateCurrentNode() {
+          if (currentNode) return currentNode;
+          var seg = segments[segmentIndex];
+          if (seg.bold) {
+            currentNode = document.createElement('strong');
+            currentNode.style.color = seg.color;
+            target.appendChild(currentNode);
+          } else {
+            currentNode = document.createTextNode('');
+            target.appendChild(currentNode);
+          }
+          return currentNode;
+        }
+
+        function typeNextCharacter() {
+          if (segmentIndex >= segments.length) return;
+
+          var seg = segments[segmentIndex];
+          var node = getOrCreateCurrentNode();
+          var nextChar = seg.text.charAt(charIndex);
+
+          if (seg.bold) {
+            node.textContent += nextChar;
+          } else {
+            node.nodeValue += nextChar;
+          }
+
+          charIndex += 1;
+
+          var nextDelay = defaultDelayMs;
+          if (target.textContent.endsWith('hello!') || nextChar === '\n') {
+            nextDelay = extendedDelayMs;
+          }
+
+          if (charIndex >= seg.text.length) {
+            segmentIndex += 1;
+            charIndex = 0;
+            currentNode = null;
+          }
+
+          setTimeout(typeNextCharacter, nextDelay);
+        }
+
+        var containerProfile = document.querySelector('.container-profile');
+        var started = false;
+        function startTypingOnce() {
+          if (started) return;
+          started = true;
+          typeNextCharacter();
+        }
+
+        if (containerProfile) {
+          var computed = window.getComputedStyle(containerProfile);
+          if (computed.animationName && computed.animationName !== 'none') {
+            containerProfile.addEventListener('animationend', startTypingOnce, { once: true });
+          } else {
+            startTypingOnce();
+          }
+        } else {
+          startTypingOnce();
+        }
+      });
+    </script>
+
+    </body>
+</html>
