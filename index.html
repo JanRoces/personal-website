@@ -6,233 +6,137 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
         <link rel="shortcut icon" href="icons/title_icon.png">
+        <script
+          src="https://kit.fontawesome.com/5e94ba9257.js"
+          crossorigin="anonymous"
+        ></script>
     </head>
 
     <body>
         <div class="main-container">
-            <div class="parent profile-container">
-                <div class="profile-info">
-                    <div class="profile-picture-container">
-                        <img class="profile-picture" src="icons/avatar2.png"></img>
-                    </div>
-                    <div class="profile-links">
-                        <h1>Jan Roces</h1>
-                        <table>
-                            <tr>
-                                <td><div class="table-icon-container"><span class="material-icons md-36">article</span></div></td>
-                                <td class="table-button-container">
-                                    <button class="icon-button"
-                                        onclick="window.open('https://drive.google.com/file/d/1oP6PgyIBOIWamON3jXP9siantfQ0ty9E/view?usp=sharing')">
-                                        Resume
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="table-icon-container"><i class="devicon-linkedin-plain"></i></div></td>
-                                <td class="table-button-container">
-                                    <button class="icon-button"
-                                        onclick="window.open('https://linkedin.com/in/jan-gilbert-roces-38ba011b3/')">
-                                        LinkedIn
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="table-icon-container"><span class="devicon-github-plain"></span></div></td>
-                                <td class="table-button-container">
-                                    <button class="icon-button"
-                                        onclick="window.open('https://github.com/JanRoces')">
-                                        Github
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="table-icon-container"><span class="material-icons md-36">email</span></div></td>
-                                <td class="table-button-container">
-                                    <button class="icon-button"
-                                        onclick="window.open('mailto:rocesjg@gmail.com')">
-                                        Message
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>                    
+            <div class="container-profile fade-in-up">
+                <div class="container-profile-picture-">
+                    <img class="profile-picture" src="icons/avatar3.png"></img>
                 </div>
-                <div class="about-me">
-                    <h3>About Me</h3>
-                    <p>
-                        My very first exposure to programming and graphic design comes from 
-                        using HTML and photoshop to create
-                        my front page of the weblog and social networking sites: 
-                        Xanga and Myspace. Coding became the perfect combination of my love 
-                        for problem solving and art.
-                    </p>
-                    <p>
-                        I am originally from Honolulu, Hawaii and moved to Las Vegas, Nevada
-                        in 2001.
-                        I attended the University of Nevada, Las Vegas and received
-                        a Bachelor of Science in Computer Science.
-                        University has taught me discipline, team work and self worth.
-                        During my academic years, I would
-                        teach myself web development and start to freelance graphic design.
-                    </p>
-                    <p>
-                        I am currently employed as an Associate Software Engineer and have
-                        experience as a QA Automation Engineer.
-                    </p>
-                    <p>
-                        Thank you for your time.
-                    </p>
+                <div>
+                  <div class="typing"><span id="typed-text"></span><span class="caret"></span></div>
                 </div>
             </div>
-            <div class="main-skills-container">
-                <div class="parent web-software-dev-container">
-                    <div class="skill-heading-icon-container">
-                        <img class="main-skill-icon" src="icons/dev_icon_black.png">
-                        <h3 class="skills-text">Web / Software Development</h3>
-                    </div>
-                    <div class="skills-container">
-                        <div class="skill-icon-container">
-                            <i class="devicon-cplusplus-plain"></i>
-                            <p class="skill-name">C++</p>
-                        </div>
-                        <div class="skill-icon-container">
-                            <i class="devicon-javascript-plain"></i>
-                            <p class="skill-name">JavaScript</p>
-                        </div>
-                        <div class="skill-icon-container">
-                            <i class="devicon-react-original"></i>
-                            <p class="skill-name">ReactJS</p>
-                        </div>
-                        <div class="skill-icon-container">
-                            <i class="devicon-html5-plain"></i>
-                            <p class="skill-name">HTML</p>
-                        </div>
-                        <div class="skill-icon-container">
-                            <i class="devicon-css3-plain"></i>
-                            <p class="skill-name">CSS</p>
-                        </div>
+            <div class="container-social-links stagger-prep">
+              <div class="container-social-link color-yellow" style="--i: 0"
+                onclick="window.open('https://drive.google.com/file/d/1oP6PgyIBOIWamON3jXP9siantfQ0ty9E/view?usp=sharing')"
+                >
+                <i class="fa-solid fa-paperclip"></i>
+              </div>
+              <div class="container-social-link color-blue" style="--i: 1"
+                onclick="window.open('https://www.linkedin.com/in/jan-roces-38ba011b3/')"
+                >
+                <i class="fa-brands fa-linkedin"></i>
+              </div>
+              <div class="container-social-link color-pink" style="--i: 2"
+                onclick="window.open('https://github.com/JanRoces')"
+                >
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div class="container-social-link color-green" style="--i: 3"
+                onclick="window.open('mailto:rocesjg@gmail.com')"
+                >
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+            </div>
+            <div class="container-about-me">
+              <div class="container-links">
+                <div class="link-text" id="link-about">about me</div>
+                <div class="link-text" id="link-projects">projects</div>
+                <div class="link-indicator" id="link-indicator"></div>
+              </div>
+              <div class="container-about-me-content" id="about-content">
+                <p>
+                  My journey into <span class="color-yellow">programming</span> began with customizing the front pages of my Xanga and MySpace profiles using <span class="color-yellow">HTML</span>.
+                  It was the perfect blend of problem-solving and artistic expression, and I was hooked from the start.
+                </p>
+                <p>
+                  Originally from Honolulu, Hawaii, I relocated to Las Vegas, Nevada in 2001.
+                  I went on to earn my <span class="color-blue">Bachelor of Science in Computer Science</span> from the <span class="color-red">University of Nevada, Las Vegas</span>.
+                  Throughout my studies, I taught myself web development and explored graphic design, combining technical skills with visual creativity.
+                </p>
+                <p>
+                  Today, I work as a <span class="color-green">Software Engineer</span>, where I've led my team through numerous projects and feature launches,
+                  bringing both <span class="color-green">leadership</span> and hands-on <span class="color-green">technical expertise</span> to the table.
+              </div>
+              <div class="container-projects-content" id="projects-content">
+              <div class="container-technologies">
+                <div class="container-technology">
+                  <i class="devicon-cplusplus-plain"></i>
+                </div>
+                <div class="container-technology">
+                  <i class="fa-brands fa-js"></i>
+                </div>
+                <div class="container-technology">
+                  <i class="fa-brands fa-react"></i>
+                </div>
+                <div class="container-technology">
+                  <i class="fa-brands fa-html5"></i>
+                </div>
+                <div class="container-technology">
+                  <i class="fa-brands fa-css3-alt"></i>
+                </div>
+              </div>
+              <div class="card-project">
+                <img class="card-image" src="project_images/rainbow.png" onclick="window.open('https://janroces.github.io/rainbow-riddle/')">
+                <div class="card-content">
+                  <div class="card-label">
+                    Rainbow Riddle
+                  </div>
+                  <div class="card-description">
+                      A Wordle-like game where the user has 8 attempts to guess the secret
+                      color combination.
+                  </div>
+                </div>
+              </div>
+              <div class="card-project">
+                <img class="card-image" src="project_images/color.png" onclick="window.open('https://janroces.github.io/color-of-your-brain/')">
+                <div class="card-content">
+                  <div class="card-label">
+                    Color of Your Brain
+                  </div>
+                  <div class="card-description">
+                      A web game that tests your brain with colors.
+                      The user will have 3 seconds to select the correct word of the corresponding
+                      color.
+                  </div>
+                </div>
+              </div>
+              <div class="card-project">
+                <img class="card-image" src="project_images/splitsy.png" onclick="window.open('https://janroces.github.io/splitsy/')">
+                <div class="card-content">
+                  <div class="card-label">
+                    Splitsy
+                  </div>
+                  <div class="card-description">
+                    A web application that organizes finances for a group and
+                    evenly divides expenses and amount of debt owed to each participant.
+                  </div>
+                </div>
+              </div>
+              <div class="card-project">
+                <img class="card-image" src="project_images/mastermind.png" onclick="window.open('https://github.com/JanRoces/mastermind')">
+                <div class="card-content">
+                  <div class="card-label">
+                    Mastermind
+                  </div>
+                  <div class="card-description">
+                    A terminal game based on the 1972, two-player board game.
+                    The four color combination is randomly generated and you have to break the code.
+                  </div>
+                </div>
+              </div>
 
-                    </div>
-                    <h3 id="message"> See below for my projects </h3>                   
-                </div>
-                <div class="parent graphic-design-container">
-                    <div class="skill-heading-icon-container">
-                        <img class="main-skill-icon" src="icons/graphic_design_icon_black.png">
-                        <h3 class="skills-text">Graphic Design</h3>
-                    </div>
-                    <div class="art-skills-container">
-                        <div class="skill-icon-container">
-                            <i class="devicon-photoshop-plain"></i>
-                            <p class="skill-name">Photoshop</p>
-                        </div>
-                        <div class="skill-icon-container">
-                            <i class="devicon-illustrator-plain"></i>
-                            <p class="skill-name">Illustrator</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-button-container">
-                        <button onclick="window.open('https://drive.google.com/drive/folders/1jVvGFluAR_R-R4SANP2vENLMiVWkCR1y?usp=sharing')">View Portfolio</button>
-                    </div>
-                </div>
-                
+              </div>
             </div>
         </div>
 
-        <div class="parent main-projects-container">
-            <h3 id="projects">Projects</h3>
-            <div class="projects-container">
-                <div class="project-list">
-                    <img src="project_images/color.png">
-                    <div class="project-label">
-                        <label><b>Color of Your Brain</b> </label>
-                    </div>
-                    <div>
-                        (JavaScript, ReactJS, HTML, CSS)
-                    </div>
-                    <div class="project-button-container">
-                        <button id="splitsy-app-button" class="project-button" 
-                            onclick="window.open('https://janroces.github.io/color-of-your-brain')">App</button>
-                        <button id="splitsy-git-button" class="project-button"
-                        onclick="window.open('https://github.com/JanRoces/color-of-your-brain')">Git</button>
-                    </div>
-                    <div class="project-description-container">
-                        <p class="project-description">
-                            Color of Your Brain is a web game that tests your brain with colors.
-                            The user will have 3 seconds to select the correct word of the corresponding
-                            color. 
-                        </p>
-                    </div>    
-                </div>
-                <div class="project-list">
-                    <img src="project_images/splitsy.png">
-                    <div class="project-label">
-                        <label><b>Splitsy</b> </label>
-                    </div>
-                    <div>
-                        (JavaScript, ReactJS, HTML, CSS)
-                    </div>
-                    <div class="project-button-container">
-                        <button id="color-app-button" class="project-button" 
-                            onclick="window.open('https://janroces.github.io/splitsy/')">App</button>
-                        <button id="splitsy-git-button" class="project-button"
-                        onclick="window.open('https://github.com/JanRoces/splitsy')">Git</button>
-                    </div>
-                    <div class="project-description-container">
-                        <p class="project-description">
-                            Splitsy is a web application that organizes finances of a certain event.
-                            Events can be a group trip with friends and each friend pays for a specific
-                            item e.g., AirBnb or car rental. Splitsy will evenly divide expenses and 
-                            amount of debt owed to each participant.
-                        </p>
-                    </div>            
-                </div>
-                <div class="project-list">
-                    <img src="project_images/mastermind.png">
-                    <div class="project-label">
-                        <label><b>Mastermind</b> </label>
-                    </div>
-                    <div>
-                        (C++)
-                    </div> 
-                    <div class="project-button-container">
-                        <button id="mastermind-git-button" class="project-button"
-                            onclick="window.open('https://github.com/JanRoces/mastermind')">Git</button>
-                    </div>
-                    <div class="project-description-container">
-                        <p class="project-description">
-                            Mastermind is based on the 1972, two-player board game of the same name 
-                            where one player selects a four color combination while the other tries
-                            to guess the correct combination. For this game, the four color combination
-                            is randomly generated and you have to break the code. This game runs on
-                            the terminal.                    
-                        </p>
-                    </div>     
-                </div>
-                <div class="project-list">
-                    <img src="project_images/munchi.png">
-                    <div class="project-label">
-                        <label><b>Munchi</b> </label>
-                    </div>
-                    <div>
-                        (Android Studio, Java)
-                    </div>
-                    <div class="project-button-container">
-                        <button id="munchi-app-button" class="project-button"
-                            onclick="window.open('https://play.google.com/store/apps/details?id=com.munchi.myapplication&hl=en_US')">App</button>
-                    </div> 
-                    <div class="project-description-container">
-                        <p class="project-description">
-                            Munchi is an Android application that generates recipes to cook based on 
-                            ingredients found in the user's pantry. This app was made by my
-                            team at UNLV's Senior Design Competition. My role in this project was
-                            handling back-end API calls to the recipe API.
-                        </p>
-                    </div>
-                    
-                    
-                </div>
-            </div>
+    <script src="index.js"></script>
 
-        </div>
     </body>
 </html>
