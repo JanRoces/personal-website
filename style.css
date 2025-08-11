@@ -231,6 +231,8 @@ body {
   overflow: hidden;
   white-space: pre-line;
   width: 300px;
+  line-height: 1.4;
+  min-height: 68px;
 }
 
 .caret {
@@ -241,6 +243,7 @@ body {
   margin-left: 2px;
   transform: translateY(0.15em);
   animation: blink 1s step-end infinite;
+  will-change: opacity;
 }
 
 @keyframes blink {
@@ -259,7 +262,7 @@ body {
 
   .profile-picture {
     border-radius: 50%;
-    width: 150px;
+    width: 130px;
   }
 
   .typing {
@@ -267,7 +270,7 @@ body {
     overflow: hidden;
     white-space: pre-line;
     width: 100%;
-    height: 65px;
+    min-height: 68px;
   }
 
   .container-about-me {
@@ -281,14 +284,12 @@ body {
   .container-about-me-content {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     max-height: 0;
     opacity: 0;
     transform: translateY(6px);
     transition: max-height 1100ms ease-in-out, opacity 800ms ease-in-out, transform 800ms ease-in-out;
     width: 100%;
   }
-
 
   .container-technologies {
     display: flex;
