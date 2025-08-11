@@ -173,6 +173,11 @@ html, body {
   overflow-y: auto;
 }
 
+.container-about-me-content.is-open.is-opening,
+.container-projects-content.is-open.is-opening {
+  overflow-y: hidden;
+}
+
 .card-project {
   display: flex;
   align-items: center;
@@ -306,6 +311,11 @@ html, body {
   .container-projects-content.is-open {
     max-height: 60vh;
     overflow-y: auto;
+  }
+
+  .container-about-me-content.is-open.is-opening,
+  .container-projects-content.is-open.is-opening {
+    overflow-y: hidden;
   }
 
   .container-technologies {
