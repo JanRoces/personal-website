@@ -15,6 +15,11 @@ body {
   overflow: hidden;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .main-container {
   align-items: center;
   display: flex;
@@ -146,9 +151,10 @@ body {
 }
 
 .container-about-me-content.is-open {
-  max-height: 1000px;
+  max-height: 60vh;
   opacity: 1;
   transform: translateY(0);
+  overflow-y: auto;
 }
 
 .container-projects-content {
@@ -161,9 +167,10 @@ body {
 }
 
 .container-projects-content.is-open {
-  max-height: 1000px;
+  max-height: 60vh;
   opacity: 1;
   transform: translateY(0);
+  overflow-y: auto;
 }
 
 .card-project {
@@ -289,6 +296,16 @@ body {
     transform: translateY(6px);
     transition: max-height 1100ms ease-in-out, opacity 800ms ease-in-out, transform 800ms ease-in-out;
     width: 100%;
+    font-size: 14px;
+  }
+
+  .container-projects-content {
+    width: 100%;
+  }
+
+  .container-projects-content.is-open {
+    max-height: 60vh;
+    overflow-y: auto;
   }
 
   .container-technologies {
@@ -321,6 +338,11 @@ body {
     border-radius: 20px;
     cursor: pointer;
     width: 150px;
+  }
+
+  .card-label {
+    font-size: 12px;
+    font-weight: bold;
   }
 
   #typed-text {
