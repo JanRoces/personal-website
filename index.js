@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function init() {
       { text: 'Jan Roces', bold: true, color: '#76C5DD' },
       { text: '\nI am a ', bold: false, color: '#FFFFFF' },
       { text: 'Software Engineer', bold: true, color: '#FF5050' },
-      { text: '.\nWelcome to my website!\n', bold: false, color: '#FFFFFF' },
+      { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' },
     ],
     segmentIndex: 0,
     charIndex: 0,
@@ -124,10 +124,13 @@ document.addEventListener('DOMContentLoaded', function init() {
     }
 
     typewriterState.charIndex += 1;
+
     let nextDelay = TYPE_DEFAULT_DELAY_MS;
+    let lastTypedText = elements.typedTarget.textContent;
 
     if (
-      elements.typedTarget.textContent.endsWith('hello!') ||
+      lastTypedText.endsWith('hello!') ||
+      lastTypedText.endsWith('website!') ||
       nextChar === '\n'
     ) {
       nextDelay = TYPE_EXTENDED_DELAY_MS;
