@@ -204,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function init() {
     moveIndicatorTo(targetLink);
 
     if (!currentlyOpen) {
+      targetContent.classList.add('is-opening');
+      onTransitionEndOnce(targetContent, 'max-height', function () {
+        targetContent.classList.remove('is-opening');
+      });
       targetContent.classList.add('is-open');
       setActiveLink(targetLink);
       return;
@@ -213,6 +217,10 @@ document.addEventListener('DOMContentLoaded', function init() {
 
     onTransitionEndOnce(currentlyOpen, 'max-height', function () {
       isTransitioningSection = false;
+      targetContent.classList.add('is-opening');
+      onTransitionEndOnce(targetContent, 'max-height', function () {
+        targetContent.classList.remove('is-opening');
+      });
       targetContent.classList.add('is-open');
       setActiveLink(targetLink);
     });
