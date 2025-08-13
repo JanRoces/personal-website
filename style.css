@@ -1,6 +1,7 @@
 /* COLOR SCHEME */
 /*
 #1D1528 purple
+#231A32 light purple
 #EECB52 yellow
 #E542A9 pink
 #76C5DD blue
@@ -26,6 +27,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+  transition: padding-top 400ms ease;
 }
 
 .container-profile {
@@ -62,11 +64,15 @@ html, body {
   }
 }
 
+.container-social-links-nav-bar {
+  display: none;
+}
+
 .container-social-links {
   display: flex;
-  cursor: pointer;
   gap: 20px;
   justify-content: center;
+  width: 100%;
   --stagger-step: 120ms;
 }
 
@@ -83,6 +89,7 @@ html, body {
 }
 
 .container-social-link {
+  display: flex;
   font-size: 25px;
   transition: all 0.3s ease;
 }
@@ -264,6 +271,26 @@ html, body {
 }
 
 @media (max-width: 768px) {
+  .container-social-links-nav-bar {
+    background-color: #231A32;
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    --stagger-step: 120ms;
+  }
+
+  .container-social-links {
+    display: none;
+  }
+
   .container-profile {
     align-items: center;
     display: flex;

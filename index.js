@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function init() {
   var elements = {
     containerProfile: document.querySelector('.container-profile'),
     socialLinks: document.querySelector('.container-social-links'),
+    socialLinksNavBar: document.querySelector(
+      '.container-social-links-nav-bar',
+    ),
     containerLinks: document.querySelector('.container-links'),
     linkAbout: document.getElementById('link-about'),
     linkProjects: document.getElementById('link-projects'),
@@ -14,6 +17,32 @@ document.addEventListener('DOMContentLoaded', function init() {
     linkIndicator: document.getElementById('link-indicator'),
     typedTarget: document.getElementById('typed-text'),
   };
+
+  updateRootOffsetForSocials();
+
+  function updateRootOffsetForSocials() {
+    const root = document.querySelector('.main-container');
+    if (!root) {
+      return;
+    }
+    const ref = elements.socialLinksNavBar || elements.socialLinks;
+    if (!ref) {
+      return;
+    }
+    const height = ref.getBoundingClientRect().height;
+    root.style.paddingTop = height + 'px';
+  }
+
+  function observeSocialsSize() {
+    const ref = elements.socialLinksNavBar || elements.socialLinks;
+    if (!ref || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    const ro = new ResizeObserver(function () {
+      updateRootOffsetForSocials();
+    });
+    ro.observe(ref);
+  }
 
   function onTransitionEndOnce(element, propertyName, handler) {
     if (!element) {
@@ -146,16 +175,29 @@ document.addEventListener('DOMContentLoaded', function init() {
   }
 
   function revealSocialsThenLinks() {
-    if (!elements.socialLinks || !elements.containerLinks) {
+    if (!elements.containerLinks) {
       return;
     }
 
-    elements.socialLinks.classList.remove('stagger-prep');
-    elements.socialLinks.classList.add('stagger-in');
+    if (elements.socialLinks) {
+      elements.socialLinks.classList.remove('stagger-prep');
+      elements.socialLinks.classList.add('stagger-in');
+    }
+    if (elements.socialLinksNavBar) {
+      elements.socialLinksNavBar.classList.remove('stagger-prep');
+      elements.socialLinksNavBar.classList.add('stagger-in');
+    }
 
-    const lastIcon = elements.socialLinks.querySelector(
-      '.container-social-link:last-child',
-    );
+    const lastIcon =
+      (elements.socialLinks &&
+        elements.socialLinks.querySelector(
+          '.container-social-link:last-child',
+        )) ||
+      (elements.socialLinksNavBar &&
+        elements.socialLinksNavBar.querySelector(
+          '.container-social-link:last-child',
+        ));
+
     if (!lastIcon) {
       elements.containerLinks.classList.add('links-in');
       return;
@@ -251,6 +293,12 @@ document.addEventListener('DOMContentLoaded', function init() {
     if (active) {
       moveIndicatorTo(active);
     }
+
+    updateRootOffsetForSocials();
+  });
+
+  window.addEventListener('load', function () {
+    updateRootOffsetForSocials();
   });
 
   let started = false;
@@ -261,6 +309,8 @@ document.addEventListener('DOMContentLoaded', function init() {
 
     started = true;
     revealSocialsThenLinks();
+    updateRootOffsetForSocials();
+    observeSocialsSize();
     typeNextCharacter();
   }
 
