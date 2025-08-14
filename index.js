@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function init() {
   var elements = {
     containerProfile: document.querySelector('.container-profile'),
     socialLinks: document.querySelector('.container-social-links'),
+    socialLinksNavBar: document.querySelector(
+      '.container-social-links-nav-bar',
+    ),
     containerLinks: document.querySelector('.container-links'),
     linkAbout: document.getElementById('link-about'),
     linkProjects: document.getElementById('link-projects'),
@@ -14,6 +17,49 @@ document.addEventListener('DOMContentLoaded', function init() {
     linkIndicator: document.getElementById('link-indicator'),
     typedTarget: document.getElementById('typed-text'),
   };
+
+  updateRootOffsetForSocials();
+  syncMobileLockToViewport();
+
+  function updateRootOffsetForSocials() {
+    const root = document.querySelector('.main-container');
+    if (!root) {
+      return;
+    }
+    const ref = elements.socialLinksNavBar || elements.socialLinks;
+    if (!ref) {
+      return;
+    }
+    const height = ref.getBoundingClientRect().height;
+    root.style.paddingTop = height + 'px';
+  }
+
+  function syncMobileLockToViewport() {
+    const root = document.querySelector('.main-container');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!root) return;
+    if (isMobile) {
+      if (!root.classList.contains('is-locked')) {
+        root.classList.add('is-locked');
+      }
+    } else {
+      if (root.classList.contains('is-locked')) {
+        root.classList.remove('is-locked');
+      }
+    }
+    updateRootOffsetForSocials();
+  }
+
+  function observeSocialsSize() {
+    const ref = elements.socialLinksNavBar || elements.socialLinks;
+    if (!ref || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    const ro = new ResizeObserver(function () {
+      updateRootOffsetForSocials();
+    });
+    ro.observe(ref);
+  }
 
   function onTransitionEndOnce(element, propertyName, handler) {
     if (!element) {
@@ -146,28 +192,58 @@ document.addEventListener('DOMContentLoaded', function init() {
   }
 
   function revealSocialsThenLinks() {
-    if (!elements.socialLinks || !elements.containerLinks) {
+    if (!elements.containerLinks) {
       return;
     }
 
-    elements.socialLinks.classList.remove('stagger-prep');
-    elements.socialLinks.classList.add('stagger-in');
+    if (elements.socialLinks) {
+      elements.socialLinks.classList.remove('stagger-prep');
+      elements.socialLinks.classList.add('stagger-in');
+    }
+    if (elements.socialLinksNavBar) {
+      elements.socialLinksNavBar.classList.remove('stagger-prep');
+      elements.socialLinksNavBar.classList.add('stagger-in');
+    }
 
-    const lastIcon = elements.socialLinks.querySelector(
-      '.container-social-link:last-child',
-    );
+    function pickVisibleSocialContainer() {
+      var candidates = [elements.socialLinks, elements.socialLinksNavBar];
+      for (var i = 0; i < candidates.length; i++) {
+        var el = candidates[i];
+        if (!el) continue;
+        var display = window.getComputedStyle(el).display;
+        if (display && display !== 'none') {
+          return el;
+        }
+      }
+      return elements.socialLinks || elements.socialLinksNavBar || null;
+    }
+
+    var container = pickVisibleSocialContainer();
+    var lastIcon = container
+      ? container.querySelector('.container-social-link:last-child')
+      : null;
+
     if (!lastIcon) {
       elements.containerLinks.classList.add('links-in');
       return;
+    }
+
+    var didShowLinks = false;
+    function showLinksOnce() {
+      if (didShowLinks) return;
+      didShowLinks = true;
+      elements.containerLinks.classList.add('links-in');
     }
 
     onTransitionEndOnce(
       lastIcon,
       SOCIAL_LAST_ICON_TRANSITION_PROP,
       function () {
-        elements.containerLinks.classList.add('links-in');
+        showLinksOnce();
       },
     );
+
+    setTimeout(showLinksOnce, 900);
   }
 
   let isTransitioningSection = false;
@@ -202,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function init() {
     }
 
     moveIndicatorTo(targetLink);
+    syncMobileLockToViewport();
 
     if (!currentlyOpen) {
       targetContent.classList.add('is-opening');
@@ -251,6 +328,12 @@ document.addEventListener('DOMContentLoaded', function init() {
     if (active) {
       moveIndicatorTo(active);
     }
+
+    syncMobileLockToViewport();
+  });
+
+  window.addEventListener('load', function () {
+    updateRootOffsetForSocials();
   });
 
   let started = false;
@@ -261,6 +344,8 @@ document.addEventListener('DOMContentLoaded', function init() {
 
     started = true;
     revealSocialsThenLinks();
+    updateRootOffsetForSocials();
+    observeSocialsSize();
     typeNextCharacter();
   }
 
