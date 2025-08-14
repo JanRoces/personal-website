@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', function init() {
       return;
     }
     const height = ref.getBoundingClientRect().height;
-    root.style.paddingTop = height + 'px';
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const extraGap = isMobile ? 10 : 0;
+    root.style.paddingTop = height + extraGap + 'px';
   }
 
   function syncMobileLockToViewport() {

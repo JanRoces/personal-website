@@ -178,12 +178,13 @@ html, body {
 }
 
 .container-projects-content.is-open {
-  max-height: 60vh;
-  opacity: 1;
-  transform: translateY(0);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+    max-height: 60vh;
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .container-about-me-content.is-open.is-opening,
@@ -277,6 +278,9 @@ html, body {
 }
 
 @media (max-width: 768px) {
+  .main-container {
+    padding-top: 56px;
+  }
   .container-social-links-nav-bar {
     background-color: #231A32;
     cursor: pointer;
@@ -344,9 +348,11 @@ html, body {
 
   .container-projects-content.is-open {
     max-height: 60vh;
+    max-height: 60svh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 0;
   }
 
   .container-about-me-content.is-open.is-opening,
@@ -362,8 +368,12 @@ html, body {
   }
 
   .container-projects {
-    height: 100vh;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 24px;
+    overscroll-behavior: contain;
   }
 
   .card-project {
