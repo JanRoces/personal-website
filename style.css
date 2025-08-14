@@ -30,6 +30,10 @@ html, body {
   transition: padding-top 400ms ease;
 }
 
+.main-container.is-locked {
+  justify-content: flex-start;
+}
+
 .container-profile {
   align-items: center;
   display: flex;
@@ -297,6 +301,7 @@ html, body {
     gap: 5px;
     justify-content: center;
     flex-direction: column;
+    margin-top: 10px;
   }
 
   .profile-picture {

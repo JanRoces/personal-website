@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function init() {
   };
 
   updateRootOffsetForSocials();
+  syncMobileLockToViewport();
 
   function updateRootOffsetForSocials() {
     const root = document.querySelector('.main-container');
@@ -31,6 +32,22 @@ document.addEventListener('DOMContentLoaded', function init() {
     }
     const height = ref.getBoundingClientRect().height;
     root.style.paddingTop = height + 'px';
+  }
+
+  function syncMobileLockToViewport() {
+    const root = document.querySelector('.main-container');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!root) return;
+    if (isMobile) {
+      if (!root.classList.contains('is-locked')) {
+        root.classList.add('is-locked');
+      }
+    } else {
+      if (root.classList.contains('is-locked')) {
+        root.classList.remove('is-locked');
+      }
+    }
+    updateRootOffsetForSocials();
   }
 
   function observeSocialsSize() {
@@ -188,28 +205,45 @@ document.addEventListener('DOMContentLoaded', function init() {
       elements.socialLinksNavBar.classList.add('stagger-in');
     }
 
-    const lastIcon =
-      (elements.socialLinks &&
-        elements.socialLinks.querySelector(
-          '.container-social-link:last-child',
-        )) ||
-      (elements.socialLinksNavBar &&
-        elements.socialLinksNavBar.querySelector(
-          '.container-social-link:last-child',
-        ));
+    function pickVisibleSocialContainer() {
+      var candidates = [elements.socialLinks, elements.socialLinksNavBar];
+      for (var i = 0; i < candidates.length; i++) {
+        var el = candidates[i];
+        if (!el) continue;
+        var display = window.getComputedStyle(el).display;
+        if (display && display !== 'none') {
+          return el;
+        }
+      }
+      return elements.socialLinks || elements.socialLinksNavBar || null;
+    }
+
+    var container = pickVisibleSocialContainer();
+    var lastIcon = container
+      ? container.querySelector('.container-social-link:last-child')
+      : null;
 
     if (!lastIcon) {
       elements.containerLinks.classList.add('links-in');
       return;
     }
 
+    var didShowLinks = false;
+    function showLinksOnce() {
+      if (didShowLinks) return;
+      didShowLinks = true;
+      elements.containerLinks.classList.add('links-in');
+    }
+
     onTransitionEndOnce(
       lastIcon,
       SOCIAL_LAST_ICON_TRANSITION_PROP,
       function () {
-        elements.containerLinks.classList.add('links-in');
+        showLinksOnce();
       },
     );
+
+    setTimeout(showLinksOnce, 900);
   }
 
   let isTransitioningSection = false;
@@ -244,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function init() {
     }
 
     moveIndicatorTo(targetLink);
+    syncMobileLockToViewport();
 
     if (!currentlyOpen) {
       targetContent.classList.add('is-opening');
@@ -294,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function init() {
       moveIndicatorTo(active);
     }
 
-    updateRootOffsetForSocials();
+    syncMobileLockToViewport();
   });
 
   window.addEventListener('load', function () {
