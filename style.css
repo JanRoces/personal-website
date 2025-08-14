@@ -191,11 +191,6 @@ html, body {
   overflow-y: hidden;
 }
 
-.container-projects {
-  height: 100vh;
-  overflow-y: auto;
-}
-
 .card-project {
   display: flex;
   align-items: center;
@@ -364,6 +359,11 @@ html, body {
     gap: 20px;
     margin-top: 10px;
     justify-content: center;
+  }
+
+  .container-projects {
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .card-project {
