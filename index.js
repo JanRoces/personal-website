@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function init() {
       { text: 'Jan Roces', bold: true, color: '#76C5DD' },
       { text: '\nI am a ', bold: false, color: '#FFFFFF' },
       { text: 'Software Engineer', bold: true, color: '#FF5050' },
-      { text: '.\nWelcome to my website!', bold: false, color: '#FFFFFF' },
+      { text: '\nWelcome to my website!', bold: false, color: '#FFFFFF' },
     ],
     segmentIndex: 0,
     charIndex: 0,
