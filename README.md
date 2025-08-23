@@ -1,2 +1,2 @@
 # personal-website
-Personal landing page to allow employers easy navigation to my links, coding projects, and graphic design portfolio
+Personal landing page to allow employers easy navigation to my social links and coding projects
